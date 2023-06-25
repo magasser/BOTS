@@ -11,11 +11,15 @@ project "BOTS"
     IncludeDir["glfw"] = "vendor/glfw/include"
     IncludeDir["glad"] = "vendor/glad/include"
     IncludeDir["spdlog"] = "vendor/spdlog/include"
+    IncludeDir["stb"] = "vendor/stb"
+    IncludeDir["ImGui"] = "vendor/ImGui"
 
     SourceDir = {}
     SourceDir["glfw"] = "vendor/glfw/src"
     SourceDir["glad"] = "vendor/glad/src"
     SourceDir["spdlog"] = "vendor/spdlog/src"
+    SourceDir["stb"] = "vendor/stb"
+    SourceDir["ImGui"] = "vendor/ImGui"
 
     targetdir ("bin/" .. OutputDir)
     objdir ("bin-int/" .. OutputDir)    
@@ -27,7 +31,6 @@ project "BOTS"
     {
         "src/**.h",
         "src/**.cpp",
-        "vendor/**/include/**.h",
 
         -- glfw
         "%{SourceDir.glfw}/glfw_config.h",
@@ -40,6 +43,14 @@ project "BOTS"
 
         -- glad
         "%{SourceDir.glad}/glad.c",
+
+        -- ImGui
+        "%{SourceDir.ImGui}/*.h",
+        "%{SourceDir.ImGui}/*.cpp",
+        "%{SourceDir.ImGui}/backends/imgui_impl_glfw.h",
+        "%{SourceDir.ImGui}/backends/imgui_impl_glfw.cpp",
+        "%{SourceDir.ImGui}/backends/imgui_impl_opengl3.h",
+        "%{SourceDir.ImGui}/backends/imgui_impl_opengl3.cpp",
     }
 
     defines
@@ -54,6 +65,8 @@ project "BOTS"
         "%{IncludeDir.glfw}",
         "%{IncludeDir.glad}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.stb}",
+        "%{IncludeDir.ImGui}",
     }
 
     links

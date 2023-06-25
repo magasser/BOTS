@@ -5,7 +5,7 @@
 class OpenGLRenderer2D : public Renderer2D
 {
 public:
-	void Draw(const Shared<VertexArray>& va, const Shared<IndexBuffer>& ib, const Shared<Shader>& shader) const override;
+	void Clear(const glm::vec4& color) const override;
 
-	void Clear() const override;
+	void Draw(const Shared<VertexArray>& va, const Shared<IndexBuffer>& ib, const Shared<Shader>& shader) const override;
 };

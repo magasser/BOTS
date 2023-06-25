@@ -7,3 +7,9 @@
 [submodule "BOTS/vendor/spdlog"]
 	path = BOTS/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "BOTS/vendor/stb"]
+	path = BOTS/vendor/stb
+	url = https://github.com/nothings/stb.git
+[submodule "BOTS/vendor/ImGui"]
+	path = BOTS/vendor/ImGui
+	url = https://github.com/ocornut/imgui.git

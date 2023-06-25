@@ -119,17 +119,24 @@ void OpenGLShader::Unbind() const
 	GLCall(glUseProgram(0));
 }
 
+void OpenGLShader::SetFloat(const std::string& name, float value)
+{
+	GLCall(glUniform1f(GetUniformLocation(name), value));
+}
+
 void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
 {
-	int32_t location = GetUniformLocation(name);
+	GLCall(glUniform4f(GetUniformLocation(name), value.x, value.y, value.z, value.w));
+}
 
-	if (location == -1)
-	{
-		BOTS_LOG_WARN("Tried to set uniform '{0}' which is not present in shader.", name);
-		return;
-	}
+void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
+{
+	GLCall(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &value[0][0]))
+}
 
-	GLCall(glUniform4f(location, value.x, value.y, value.z, value.w));
+void OpenGLShader::SetInt(const std::string& name, uint32_t value)
+{
+	GLCall(glUniform1i(GetUniformLocation(name), value));
 }
 
 int32_t OpenGLShader::GetUniformLocation(const std::string& name)
@@ -139,6 +146,10 @@ int32_t OpenGLShader::GetUniformLocation(const std::string& name)
 
 	GLCall(int32_t location = glGetUniformLocation(m_RendererId, name.c_str()));
 	m_UniformLocationCache[name] = location;
+
+	if (location == -1)
+		BOTS_LOG_WARN("Tried to get uniform '{0}' which is not present in shader.", name);
+
 	return location;
 
 }
