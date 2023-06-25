@@ -12,11 +12,6 @@ workspace "BOTS"
     {
         "MultiProcessorCompile"
     }
-    
-    OutputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-
-    IncludeDir = {}
-    IncludeDir["glm"] = "vendor/glm"
 
     include "BOTS"
 
